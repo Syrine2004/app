@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "173106247930",
+    "project_id": "ihelp-4a377",
+    "storage_bucket": "ihelp-4a377.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173106247930:android:bac881c7f59cd9ebeef143",
+        "android_client_info": {
+          "package_name": "com.example.ihelp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDOvSMp56ULl2riZdH1FCPmyrqYOKvgIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173106247930:android:7571c5a0ab7266aaeef143",
+        "android_client_info": {
+          "package_name": "com.example.ihelp_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDOvSMp56ULl2riZdH1FCPmyrqYOKvgIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
