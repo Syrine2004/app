@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class FicheAdapter extends FirestoreRecyclerAdapter<Fiche, FicheAdapter.FicheViewHolder> {
 
@@ -60,5 +61,34 @@ public class FicheAdapter extends FirestoreRecyclerAdapter<Fiche, FicheAdapter.F
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
+    }
+
+    // Interface pour gérer les erreurs de chargement (ex: index manquant)
+    public interface OnDataChangedListener {
+        void onDataChanged();
+
+        void onError(FirebaseFirestoreException e);
+    }
+
+    private OnDataChangedListener dataListener;
+
+    public void setOnDataChangedListener(OnDataChangedListener listener) {
+        this.dataListener = listener;
+    }
+
+    @Override
+    public void onDataChanged() {
+        super.onDataChanged();
+        if (dataListener != null) {
+            dataListener.onDataChanged();
+        }
+    }
+
+    @Override
+    public void onError(@NonNull FirebaseFirestoreException e) {
+        super.onError(e);
+        if (dataListener != null) {
+            dataListener.onError(e);
+        }
     }
 }

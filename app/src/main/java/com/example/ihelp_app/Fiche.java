@@ -6,6 +6,8 @@ public class Fiche {
     private String categorie;
     private String contenu;
     private String userId;
+    // NOUVEAU: Champ pour la recherche insensible à la casse
+    private String titreLower;
 
     public Fiche() {
         // Constructeur vide requis pour Firestore
@@ -17,6 +19,8 @@ public class Fiche {
         this.categorie = categorie;
         this.contenu = contenu;
         this.userId = userId;
+        // Définir le champ en minuscules ici
+        this.titreLower = titre.toLowerCase();
     }
 
     public String getId() {
@@ -33,6 +37,17 @@ public class Fiche {
 
     public void setTitre(String titre) {
         this.titre = titre;
+        // Mettre à jour le champ en minuscules
+        this.titreLower = titre.toLowerCase();
+    }
+
+    public String getTitreLower() {
+        return titreLower;
+    }
+
+    // Setter optionnel, pour s'assurer que si titre est défini via un setter, titreLower le soit aussi
+    public void setTitreLower(String titreLower) {
+        this.titreLower = titreLower;
     }
 
     public String getCategorie() {

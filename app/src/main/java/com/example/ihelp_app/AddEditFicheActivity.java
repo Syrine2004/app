@@ -61,8 +61,17 @@ public class AddEditFicheActivity extends AppCompatActivity {
         String categorie = editTextCategorie.getText().toString().trim();
         String contenu = editTextContenu.getText().toString().trim();
 
+        // NOUVEAU: Préparer la version en minuscules pour la recherche
+        String titreLower = titre.toLowerCase();
+
         if (TextUtils.isEmpty(titre) || TextUtils.isEmpty(categorie) || TextUtils.isEmpty(contenu)) {
             Toast.makeText(this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Assurez-vous que l'utilisateur est connecté avant d'appeler getUid()
+        if (mAuth.getCurrentUser() == null) {
+            Toast.makeText(this, "Erreur: Utilisateur non authentifié.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -74,7 +83,8 @@ public class AddEditFicheActivity extends AppCompatActivity {
             fiche.put("titre", titre);
             fiche.put("categorie", categorie);
             fiche.put("contenu", contenu);
-            // userId ne change pas
+            // AJOUT DU CHAMP DE RECHERCHE EN MINUSCULES
+            fiche.put("titreLower", titreLower);
 
             fichesRef.document(ficheId).update(fiche)
                     .addOnSuccessListener(aVoid -> {
@@ -82,23 +92,13 @@ public class AddEditFicheActivity extends AppCompatActivity {
                         finish();
                     })
                     .addOnFailureListener(e -> Toast
-                            .makeText(AddEditFicheActivity.this, "Erreur lors de la mise à jour", Toast.LENGTH_SHORT)
+                            .makeText(AddEditFicheActivity.this, "Erreur lors de la mise à jour: " + e.getMessage(), Toast.LENGTH_SHORT)
                             .show());
 
         } else {
             // Ajout
-            // On laisse Firestore générer l'ID du document, mais on peut aussi le stocker
-            // dans l'objet si besoin.
-            // Ici, on va créer un objet Map ou utiliser la classe Fiche, mais attention
-            // l'ID est généré après.
-            // Pour simplifier avec la classe Fiche, on peut générer l'ID avant ou laisser
-            // Firestore le faire.
-            // Utilisons une Map pour l'ajout simple ou la classe Fiche sans ID, puis on set
-            // l'ID ?
-            // Le plus simple avec Firestore est d'ajouter et de laisser l'ID auto.
-
-            // Mais notre classe Fiche a un champ ID. C'est mieux de le remplir.
             String id = fichesRef.document().getId();
+            // Utiliser la classe Fiche qui gère titreLower automatiquement
             Fiche fiche = new Fiche(id, titre, categorie, contenu, userId);
 
             fichesRef.document(id).set(fiche)
@@ -107,7 +107,7 @@ public class AddEditFicheActivity extends AppCompatActivity {
                         finish();
                     })
                     .addOnFailureListener(e -> Toast
-                            .makeText(AddEditFicheActivity.this, "Erreur lors de l'ajout", Toast.LENGTH_SHORT).show());
+                            .makeText(AddEditFicheActivity.this, "Erreur lors de l'ajout: " + e.getMessage(), Toast.LENGTH_SHORT).show());
         }
     }
 }

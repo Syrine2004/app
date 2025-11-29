@@ -1,53 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@color/backgroundColor"
+    android:padding="24dp"
+    tools:context=".AddEditFicheActivity">
 
     <TextView
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Détails de la Fiche"
+        android:text="Nouvelle Fiche"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="24dp"
-        android:layout_gravity="center_horizontal"/>
+        android:textColor="@color/primaryTextColor"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="24dp"/>
 
     <EditText
         android:id="@+id/editTextTitre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Titre (ex: Définition API)"
-        android:inputType="textCapSentences"
-        android:layout_marginBottom="16dp"/>
+        android:hint="Titre"
+        android:inputType="text"
+        android:padding="16dp"
+        android:background="@drawable/bg_edit_text"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/secondaryTextColor"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/editTextCategorie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Catégorie (ex: Java, Android)"
-        android:inputType="textCapWords"
-        android:layout_marginBottom="16dp"/>
+        android:hint="Catégorie (ex: Java, Maths)"
+        android:inputType="text"
+        android:padding="16dp"
+        android:background="@drawable/bg_edit_text"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/secondaryTextColor"
+        app:layout_constraintTop_toBottomOf="@id/editTextTitre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/editTextContenu"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:hint="Contenu ou Code Snippet..."
-        android:gravity="top|start"
+        android:hint="Contenu de la fiche..."
         android:inputType="textMultiLine"
-        android:background="@android:drawable/edit_text"
-        android:padding="8dp"
-        android:layout_marginBottom="16dp"/>
+        android:gravity="top|start"
+        android:padding="16dp"
+        android:background="@drawable/bg_edit_text"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/secondaryTextColor"
+        app:layout_constraintTop_toBottomOf="@id/editTextCategorie"
+        app:layout_constraintBottom_toTopOf="@id/buttonSave"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonSave"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sauvegarder"
-        android:backgroundTint="#00BCD4"
-        android:textColor="#FFFFFF"/>
+        android:layout_height="60dp"
+        android:text="Enregistrer"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/primaryColor"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

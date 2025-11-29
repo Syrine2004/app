@@ -2,4 +2,21 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <!-- Serene Blue Palette -->
+    <color name="primaryColor">#5C6BC0</color>      <!-- Soft Indigo -->
+    <color name="primaryLightColor">#8E99F3</color> <!-- Lighter Indigo -->
+    <color name="primaryDarkColor">#26418F</color>  <!-- Darker Indigo -->
+    
+    <color name="secondaryColor">#26A69A</color>    <!-- Teal -->
+    <color name="secondaryLightColor">#64D8CB</color>
+    <color name="secondaryDarkColor">#00766C</color>
+    
+    <color name="backgroundColor">#F5F7FA</color>   <!-- Light Blue-Grey -->
+    <color name="surfaceColor">#FFFFFF</color>      <!-- White -->
+    
+    <color name="primaryTextColor">#37474F</color>  <!-- Dark Blue-Grey -->
+    <color name="secondaryTextColor">#78909C</color> <!-- Medium Blue-Grey -->
+    
+    <color name="errorColor">#EF5350</color>        <!-- Soft Red -->
 </resources>

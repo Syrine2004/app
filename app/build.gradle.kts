@@ -27,8 +27,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17 // FIX: Utiliser Java 17
+        targetCompatibility = JavaVersion.VERSION_17 // FIX: Utiliser Java 17
+    }
+    // NOUVEAU : Force Gradle à utiliser le JDK 17 pour la compilation
+    java {
+        toolchain {
+            languageVersion.set(org.gradle.jvm.toolchain.JavaLanguageVersion.of(17))
+        }
     }
 }
 
